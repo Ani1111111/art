@@ -130,7 +130,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT= os.path.join(PROJECT_DIR,'static/')
+STATIC_ROOT= os.path.join(PROJECT_DIR,'static')
 file_path = os.path.join(settings.STATIC_ROOT, 'data/foobar.csv')
 PROJECT_ROOT = os.path.realpath(os.path.dirname(__file__))
 MEDIA_ROOT = PROJECT_ROOT + '/static/'
