@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Activation email sent" %}{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="/static/css/article.css">
+<title>Registration email</title>
+<p id="registrationpara">{% trans "Please check your email to complete the registration process." %}</p>
+{% endblock %}

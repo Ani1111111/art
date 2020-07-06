@@ -1,0 +1,282 @@
+*{
+    margin:0;
+    padding:0;
+
+}
+#registrationpara{
+    font-size:30px;
+}
+.aboutpara{
+    margin: 10px;
+    font-size: 1.5rem;
+}
+.faqquestions{
+    font-size: 1.5rem;
+    margin: 5px;
+    display: flex;
+}
+.faqquestions p{
+    margin:1px;
+}
+.faqquestions li{
+    margin: 1px;
+    margin-left: 25px;
+}
+.customersupport{
+    background: #d3d1de;
+    height: 400px;
+    margin: auto;
+    margin-top: 3rem;
+    border-radius: 12px;
+    font-size:19px;
+    font-weight:500;
+    text-align:center;
+    width: 100%;
+    box-shadow: 0 0 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.customersupport p{
+    margin:1px
+}
+#h2{
+    word-wrap: break-word;
+}
+#pimg {
+    right: 24px;
+    width: 104px;
+    position: relative;
+    margin: 4px;
+    bottom: 15px;
+    height: 129px;
+    border-bottom-right-radius: 31px;
+}
+#pcontent{
+    font-size: 19px;
+    font-family: 'Balthazar', serif;
+    width: 36rem;
+    white-space: pre-wrap;  
+    margin-bottom: 5px;  
+}
+.media-body {
+    width: 86%;
+}
+.content-section {
+    margin-bottom: 73px;
+    box-shadow: 0 0 15px;
+}
+#imagepara{
+    margin:1px;
+    display:none;
+}
+#contentimage{
+    margin: 1px;
+    width: 94%;
+    height: 344px;
+    border-radius: 11px;
+}
+
+#likeform{
+    padding: 10px;
+    position: relative;
+    left: 15px;
+    display: inline;
+}
+#likeform strong{
+    font-size: 1.5rem;
+}    
+#like1{
+    background: url(/static/images/download-removebg-preview.png);
+    height: 3.3rem;
+    width: 4rem;
+    border: none;
+    cursor: pointer;
+    outline:none;
+}
+#unlike1{
+    background: url(/static/images/download__1_-removebg-preview-removebg-preview.png);
+    height: 3.3rem;
+    width: 4rem;
+    border: none;
+    cursor: pointer;
+    outline:none;
+}    
+
+.comments{
+    margin: 27px;
+    overflow-y: scroll;
+    height: 15rem;
+}
+#commentform{
+    margin:1px;
+}
+#commentform input{
+    margin: 1px;
+    font-size: 1.5rem;
+    border-radius: 13px;
+    outline: none;
+    border: 2px solid #b5acac;
+}
+#commentform .commentsubmit input{
+    border-radius: 7px;
+    margin: 1px;
+    width: 4rem;
+    color: wheat;
+    background-color: #007bff;
+    cursor:pointer;
+}
+.replies{
+    margin:1px;
+}
+.replies img{
+    margin:1px;
+}
+.replies .replycontent{
+    margin:1px;
+    font-weight:700;
+}
+.replybox{
+    margin:1px;
+    display: flex;
+}
+.msgbox{
+    margin:1px;
+}
+.msges{
+    margin-top: 20px;
+    display: flex;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+}
+.msges img{
+    margin: 1px;
+    width: 49px;
+    height: 50px;
+    border-radius: 50%;;
+}
+.msges .commentshow{
+    margin: 1px;
+    margin-left: 20px;
+    word-break: break-word;
+}
+.commentmsg{
+    margin: 1px;
+    background: #9e9bb7;
+    border-radius: 6px;
+    margin-bottom: 6px;
+}
+.commentmsg span{
+    font-weight: 500;
+    margin: 1px;
+    font-size: 1.5rem;
+}
+.replypro{
+    margin:1px;
+    border-radius:12px;
+}
+
+.mylist{
+    height: 107vh;
+}
+
+.searchform{
+    margin: 20px;
+    font-size: 1.5rem;
+}
+.searchform input{
+    margin: 1px;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    background: transparent;
+    border-bottom: #8c8282 1px solid;
+    box-shadow: 0 0 8px;
+}
+.searchform button{
+    margin: 1px;
+    width: 6rem;
+    border-radius: 10px;
+    color: white;
+    outline: none;
+    background-color: #007bff;
+    border: 1px solid grey;
+    cursor: pointer;
+}
+
+#postreport{
+    display: inline;
+    margin-left: 7rem;
+}
+#reportpara{
+    display:none;
+}
+#postreport label{
+    margin: 1px;
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+#postreport select{
+    margin: 1px;
+    font-weight: 500;
+    border-radius: 8px;
+    outline: none;
+}
+#postreport input{
+    margin: 1px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: white;
+    border-radius: 0px;
+    padding: 5px;
+    border-radius: 10px;
+    outline: none;
+    background-color: #007bff;
+}
+
+@media only screen and (max-width:768px){
+    .searchform input {
+        margin-bottom: 6px;
+    }
+    #pimg {
+        width: 50px;
+        height: 82px;
+        border-radius: 50%;
+        right:0px;
+        margin:0px;
+        bottom:0;
+    }
+    #pcontent {
+        width: 100%;
+    }
+    .content-section {
+        padding: 7px;   
+    }
+    .article-metadata{
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .msges .commentshow {
+        margin-left: 0px;
+    }
+    #commentform input {
+        font-size: 1.4rem;
+        width: 100%;
+    }
+    .comments {
+        margin:0px;
+        width: 100%;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+}
+@media only screen and (min-width:768px){
+
+    #pcontent {
+        width: 100%;
+    }
+    #pimg {
+        width: 4rem;
+        height: 6rem;
+    }
+  }

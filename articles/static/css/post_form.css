@@ -1,0 +1,50 @@
+
+.content-section {
+    height: initial;
+    overflow: none;
+    box-shadow: 0 0 15px;
+}
+form legend{
+    font-family: 'Piedra', cursive;
+    font-size:2rem;
+}
+.form_group{
+    margin-top: 10px;
+}
+
+.form_group input{
+    border-radius: 16px;
+    width: 22rem;
+    height: 3rem;
+}
+#newpostform textarea{
+    width: 30rem;
+    margin: 1px;
+    border-radius: 15px;
+    
+}
+#newpostform label{
+    font-size: 20px;
+    font-weight: 500;
+    
+}
+.loginfacebook{
+    font-size: 24px;
+    margin: 1px;
+    color: beige;
+    background: blue;
+    border: 2px solid black;
+}
+@media only screen and (max-width:768px){
+    .form_group input {
+        width: 100%;
+    }
+    #newpostform textarea {
+        width: 100%;
+    }
+}    
+@media only screen and (min-width:768px){
+    #newpostform textarea {
+        width: 100%;
+    }
+}    

@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="/static/css/profile.css">
+<title>User Profile</title>
+
+<div class="content-section new">
+    <div class="media">
+        <img class="account-img" src="{{ myprofile.profilepic.url}}">
+        <div class="media-body">
+            <h2 class="account-heading">{{ myprofile.user.username }}</h2>
+            <p class="text-secondary">{{ myprofile.user.email}}</p>
+
+        </div>
+    </div>
+    <div class="profile_content">
+        <div class="div">
+            <label for="profilename">Name</label>
+            <p id="profilename">{{myprofile.name}}</p>
+        </div>
+        <div class="div">
+            <label for="profileage">Age</label>
+            <p>{{myprofile.age}}</p>
+        </div>
+        <div class="div">
+            <label for="profileaddress">Address</label>
+            <p>{{myprofile.address}}</p>
+        </div>
+        <div class="div">
+            <label for="profilestatus">Status</label>
+            <p>{{myprofile.status}}</p>
+        </div>
+        <div class="div">
+            <label for="profilegender">Gender</label>
+            <p>{{myprofile.gender}}</p>
+        </div>
+        <div class="div">
+            <label for="profilephone_no">Mobile No</label>
+            <p>{{myprofile.phone_no}}</p>
+        </div>
+        <div class="div">
+            <label for="profiledescription">Desciption</label>
+            <p>{{myprofile.description}}</p>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock content %}

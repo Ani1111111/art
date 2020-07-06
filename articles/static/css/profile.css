@@ -1,0 +1,116 @@
+.new {
+    height:initial ; 
+    overflow: none;
+    box-shadow: 0 0 15px;
+}
+h2{
+    font-size: 3rem;
+    word-break: break-word;
+}
+.media-body {
+    position: relative;
+    top: 90px;
+    text-align: center;
+    font-size: 2rem;    width: 71%;
+    box-sizing: border-box;
+}
+.media-body p{
+    word-break: break-word;
+}
+.media img{
+    border-radius: 20px;
+    margin-bottom: 20px;
+    width: 13rem;
+    height: 17rem;
+}
+#profileform{
+    margin:1px;
+}
+
+#profileform fieldset{
+    margin:1px;
+}
+#profileform textarea{
+    width: 30rem;
+    margin: 1px;
+    border-radius: 15px;
+}
+#profileform label{
+    font-size: 20px;
+    font-weight: 500;
+}
+#profileform input{
+    margin:1px;
+    border-radius: 8px;
+    width: 23rem;
+    height: 3rem;
+}
+#profileform button{
+    margin:1px;
+}
+
+.profile_content{
+    margin: 1px;
+    display: flex;
+    flex-direction: column;
+}
+.profile_content .div{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-top: 2rem;
+} 
+
+.profile_content label{
+    margin: 1px;
+    font-size: 3.5rem;
+    font-weight: 500;
+}
+.profile_content p{
+    margin:1px;
+    font-size: 1.5rem;
+}
+
+#followlink{
+    margin:1px;
+}
+#followlink input{
+    margin: 1px;
+    background: linear-gradient(45deg, red, transparent);
+    border: 1px solid black;
+    border-radius: 13px;
+    transition:1s ease;
+    cursor:pointer;
+}
+#followlink input:hover{
+    transform: scale(1.1)
+}
+
+@media only screen and (max-width:768px){
+    .media img {
+        width: 5rem;
+        height: 7rem;
+    }
+    .media-body {
+        top: 0px;
+    }
+    #profileform textarea {
+        width: 100%;
+    }
+    #profileform input {
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width:768px){
+    #profileform textarea {
+        width: 100%;
+    }
+    .media img {
+        width: 7em;
+        height: 10em;
+    }
+    .media-body {
+        top: 0px;
+    }
+}    

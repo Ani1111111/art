@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Account Activated" %}{% endblock %}
+
+{% block content %}
+<title>Resitration complete</title>
+<p style="font-size:30px">
+    {% trans "Your account is now activated." %}
+    {% if not user.is_authenticated %}
+    {% trans "You can log in." %}
+    {% endif %}
+</p>
+{% endblock %}
+

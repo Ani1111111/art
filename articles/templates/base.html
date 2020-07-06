@@ -1,0 +1,194 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html>
+  <div id="fb-root"></div>
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v7.0" nonce="nQnHuIAp"></script>
+  <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=5ef615f6a922da001296fd6f&product=inline-share-buttons" async="async"></script>
+<head>
+
+
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="keywords" content ="arthub, social, website, articles, poetry, jokes, shayaries, stories,questions,posts,best jokes, best shayaries, best stories,best poems,">
+  <meta name="csrf-token" content="{{ 'csrf_token()' }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://fonts.googleapis.com/css2?family=Balthazar&family=Piedra&family=Playball&display=swap"
+    rel="stylesheet">
+  
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"> 
+  <link rel="shortcut icon" type="image/png" href="/static/images/favicon.png">
+  <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico'%}" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Sriracha&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="/static/css/main.css">
+
+
+
+</head>
+
+<body>
+  <header class="site-header">
+    <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+      <div class="container">
+        <a class="navbar-brand mr-4" href="/">ArtHub</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle"
+          aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarToggle">
+          <div class="navbar-nav mr-auto">
+            <a class="nav-item nav-link" href="/articles/home">Home</a>
+            <a class="nav-item nav-link" href="/articles/about">About</a>
+          </div>
+          <!-- Navbar Right Side -->
+          <div class="navbar-nav">
+            {% if user.is_authenticated %}
+            <a class="nav-item nav-link" href="/articles/mypost/create">New Post</a>
+            <a class="nav-item nav-link" href="/articles/profile/edit/{{ user.myprofile.id}}">Update Profile</a>
+            <a class="nav-item nav-link" href="/articles/myposts">MyPosts</a>
+            <a class="nav-item nav-link" href="/accounts/logout">Logout</a>
+            {% else %}
+            <a class="nav-item nav-link" href="/accounts/login">Login</a>
+            <a class="nav-item nav-link" href="/accounts/register">Register</a>
+            {% endif %}
+          </div>
+        </div>
+      </div> 
+    </nav>
+  </header>
+
+
+  <div class="head">
+    <img src="/static/images/IMG_20200704_214928-removebg-preview-removebg-preview.png" id="mainlogo">
+    <div class="aip">
+      ART IS PASSION
+    </div>
+  </div>
+
+
+  <main role="main" class="container">
+    <div class="row">
+      <div class="col-md-8">
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags}}">
+          {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% block content %}{% endblock %}
+      </div>
+      <div class="col-md-4 ">
+        <div id="latestthings"class="content-section sidelist">
+          <h3>Latest</h3>
+          <p class='text-muted'>Get the latest Things here.
+            <ul class="list-group">
+              <a id="carticles" href="#">
+                <li class="list-group-item list-group-item-light">Latest Aritcles</li>
+              </a>
+              <a id="cpoetry" href="#">
+                <li class="list-group-item list-group-item-light">Latest Poetry</li>
+              </a>
+              <a id="cstories" href="#">
+                <li class="list-group-item list-group-item-light">Latest Stories</li>
+              </a>
+              <a id="cshayaries" href="#">
+                <li class="list-group-item list-group-item-light">Latest Shayaries</li>
+              </a>
+              <a id="cjokes" href="#">
+                <li class="list-group-item list-group-item-light">Latest Jokes</li>
+              </a>
+              <a id="cother" href="#">
+                <li class="list-group-item list-group-item-light">Latest Questions</li>
+              </a>
+            </ul>
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+  <form action="/articles/contact" class="form" id="form" method="post">
+    {% csrf_token %}
+    <fieldset>
+      <h1>CONTACT US</h1>
+      <input type="text" name="name" id="name" placeholder="Enter Your Name" required>
+      <input type="email" name="email" id="email" placeholder="Enter Your Email" required>
+      <textarea name="msg" id="msg" cols="50" rows="4" placeholder="Write Message"></textarea>
+      <div class="contactussubmitbutton">
+        <button id="submit" type="submit">SUBMIT</button>
+      </div>
+      
+    </fieldset>
+  </form>
+  <footer>
+    <div class="fmain">
+      <div class="fboxes">
+        <h1>Useful Links</h1>
+        <a href="/articles/about">
+          <p>About Us</p>
+        </a>
+        <a href="/articles/privacypolicy">
+          <p>Privacy Policy</p>
+        </a>
+        <a href="/articles/disclaimer">
+          <p>Disclaimer</p>
+        </a>
+        <a href="/articles/termsandconditions">
+          <p>Terms And Conditions</p>
+        </a>
+      </div>
+      <div class="fboxes">
+        <h1>Categories</h1>
+        <a href="#latestthings">
+          <p>Poems</p>
+        </a>
+        <a href="#latestthings">
+          <p>Shayaries</p>
+        </a>
+        <a href="#latestthings">
+          <p>Questions</p>
+        </a>
+        <a href="#latestthings">
+          <p>Stories</p>
+        </a>
+      </div>
+      <div class="fboxes">
+        <h1>Get In Touch</h1>
+        <a href="#form">
+          <p>Contact Us</p>
+        </a>
+        <a href="/articles/customersupport">
+          <p>Customer support</p>
+        </a>
+        <a href="/articles/faq">
+          <p>FAQ</p>
+        </a>
+      </div>
+    </div>
+    <div class="copyright">
+      <p id="flogo">ArticleHub</p>
+      <p id="copyright">COPYRIGHT © 2020 ArticleHub ALL RIGHTS RESERVED.</p>
+    </div>
+  </footer>
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <script src= "/static/js/category.js"></script>
+</body>
+
+
+</html>

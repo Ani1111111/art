@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{%load static%}
+{% block content %}
+<title>{{object.title}}</title>
+<link rel="stylesheet" href="/static/css/article.css">
+<article class="media content-section ">
+  <img class=" article-img" id="pimg" src="{{ object.author.myprofile.profilepic.url}}">
+  <div class="media-body">
+    <div class="article-metadata">
+      <a class="mr-2" href="/articles/myprofile/{{object.author.myprofile.id}}">{{ object.author }}</a>
+      <small class="text-muted">{{ object.date_posted|date:"F d, Y"  }}</small>
+      {% if object.author == user %}
+      <div>
+        <a class="btn btn-secondary btn=sm mt-1" href="{% url 'post-update' object.id %}">Update</a>
+        <a class="btn btn-danger btn=sm mt-1" href="/articles/mypost/delete/{{mypost.id}}">Delete</a>
+      </div>
+      {% endif %}
+    </div>
+    <h2 id="h2" class="article-title"> {{ object.title }}</h2>
+    <section id="section">
+      <pre class="article-content" id="pcontent">{{ object.content }}</pre>
+      {% if object.images %}
+      <img id="contentimage"src="{{object.images.url}}" alt="Post image">
+      {% endif %}
+    </section>
+    <form id="likeform" action="{% url 'like-post'%}" method="POST">
+      {% csrf_token %}
+      <input type="hidden" name='post_id' value="{{object.id}}">
+
+      {% if user not in object.likes.all %}
+      <button id="like1" type='submit'></button>
+      {% else %}
+      <button id="unlike1" type='submit'></button>
+      {% endif %}
+      <strong>{{object.likes.all.count}} likes</strong>
+    </form>
+    <div class="sharethis-inline-share-buttons"></div>
+    
+  </div>
+
+</article>
+
+
+{% endblock content %}

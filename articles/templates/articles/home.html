@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+{% load static%}
+{% load extras %}
+{% block content %}
+
+<link rel="stylesheet" href="/static/css/article.css">
+<title>ArtHub</title>
+<form method="get" class="searchform">
+  <input type="search" placeholder="Search" value="{{request.GET.query}}" aria-label="Search" name="query" id="query">
+  <button class="searchbutton" id="sb" type="submit">Search</button>
+</form>
+
+
+
+{% for post in posts %}
+<article class="media content-section">
+  <img class="article-img" id="pimg" src="{{ post.author.myprofile.profilepic.url}}">
+  <div class="media-body">
+    <div class="article-metadata">
+      <a class="mr-2" href="/articles/myprofile/{{post.author.myprofile.id}}">{{ post.author}}</a>
+      <small class="text-muted">{{ post.cr_date|date:"F d, Y"  }}</small>
+    </div>
+    <h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
+    <section id="section">
+      <pre class="article-content" id="pcontent">{{ post.content }}</pre>
+      {% if post.images %}
+      <a href="{{post.images.url}}"><img id="contentimage"src="{{post.images.url}}" alt="Post image"></a>
+      {% endif %}
+    </section>
+    <form id="likeform" action="{% url 'like-post'%}" method="POST">
+      {% csrf_token %}
+      <input type="hidden" name='post_id' value="{{post.id}}">
+
+      {% if user not in post.likes.all %}
+      <button id="like1" type='submit'></button>
+      {% else %}
+      <button id="unlike1" type='submit'></button>
+      {% endif %}
+      <strong>{{post.likes.all.count}} likes</strong>
+    </form>
+
+  {% if request.user == post.author %}
+    <p id="reportpara">Your Posts</p>
+  {% else %}
+  <form action="{% url 'post-report' %}" id="postreport" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="post_id" value="{{post.id}}">
+    <label for="postreport">Report</label>
+    <select name="postreport" id="postreport">
+      <option value="Choose any report">Choose</option>
+      <option value="abusing">abusing</option>
+      <option value="nudity">nudity</option>
+      <option value="violence">violence</option>
+      <option value="Harassment">Harassment</option>
+      <option value="False news">False news</option>
+      <option value="Terrorism">Terrorism</option>
+      <option value="Something Else">Something Else</option>
+      <option value="Spam">Spam</option>
+    </select>
+    <input type="submit" value="Submit">
+  </form>
+  {% endif %}
+  
+    
+    <div class="sharethis-inline-share-buttons"></div>
+    <div class="comments">
+      <h2>Leave a Comment</h2>
+
+      <form id="commentform" action="/articles/sendcomment/" method="post">
+        {% csrf_token %}
+        <input type="text" name="msg" placeholder="Enter comment here">
+        <div class="commentsubmit">
+          <input type="hidden" name="post_id" value="{{post.id}}">
+          <input type="hidden" name="commentid" value="">
+          <input type="submit" value="Post">
+        </div>
+
+      </form>
+      <h4>Comments</h4>
+      {% for comment in comments %}
+
+      {% if post.title == comment.post.title and comment.parent == None %}
+      <div class="msgbox">
+        <div class="msges">
+          <img src="{{comment.user.myprofile.profilepic.url}}" alt="userimage">
+          <div class="commentshow">
+            <div class="commentmsg"><b>{{comment.user.username}}</b>&nbsp at
+              &nbsp{{comment.cr_date}}<br><span>{{comment.msg}}</span>
+            </div>
+
+            {% if request.user == post.author or comment.user == request.user %} <a
+              href="/articles/postcomment/delete/{{comment.id}}">Delete</a>
+
+            {% endif %}
+
+            <div class="reply mx-0">
+              <button class="btn btn-sm btn-primary" type="button" data-toggle="collapse"
+                data-target="#replybox{{comment.id}}" aria-expanded="false" aria-controls="replybox{{comment.id}}">
+                Reply
+              </button>
+              <div class="collapse" id="replybox{{comment.id}}">
+                <div class="card card-body my-2 replypro">
+                  <form id="commentform" action="/articles/sendcomment/" method="post">
+                    {% csrf_token %}
+                    <input type="text" name="msg" placeholder="Post a Reply">
+                    <input type="hidden" name="commentid" value="{{comment.id}}">
+                    <div class="commentsubmit">
+                      <input type="hidden" name="post_id" value="{{post.id}}">
+                      <input type="submit" value="Post">
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div class="replies  my-2">
+                <h6>Replies</h6>
+                {% for reply in replyDict|get_val:comment.id %}
+                <div class="replybox">
+                  <img src="{{comment.user.myprofile.profilepic.url}}" alt="userimage">
+                  <div class="replycontent">{{reply}}</div>
+                </div>
+                {% if request.user == post.author or comment.user == request.user %} <a
+                  href="/articles/postcomment/delete/{{reply.id}}">Delete</a> {% endif %}
+                {% endfor %}
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</article>
+{% endfor %}
+
+{% if is_paginated %}
+
+{% if page_obj.has_previous %}
+<a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+<a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+{% endif %}
+
+{% for num in page_obj.paginator.page_range %}
+{% if page_obj.number == num %}
+<a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+{% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+<a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+{% endif %}
+{% endfor %}
+{% endif %}
+{% if page_obj.has_next %}
+<a class="btn btn-outline-info mb-4" href="?page={{page_obj.next_page_number}}">Next</a>
+<a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+{% endif %}
+{% endblock content %}
+
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+{%load static%}
+<title>Resitration</title>
+<div class="content-section">
+    <link rel="stylesheet" href="/static/css/post_form.css">
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset class="form_group">
+            <legend class="border_bottom mb-4">Join Today</legend>
+            {% csrf_token %}
+            {{form|crispy}}
+        </fieldset>
+        <div class="form_group">
+            <button class="btn btn-outline-info" type="submit">Sign Up</button>
+        </div>
+    </form>
+    <div class="border_top pt-3">
+        <small class="text_muted">
+            Already Have An Account? <a class="ml-2" href="/accounts/login">Sign In</a>
+        </small>
+    </div>
+</div>
+{% endblock content %}

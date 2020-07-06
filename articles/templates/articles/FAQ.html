@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<link rel="stylesheet" href="/static/css/article.css">
+<title>FAQ</title>
+<h1>FAQ</h1>
+<br>
+<h3>RECENT ASKED QUESTIONS</h3>
+<br>
+<ol>
+{% for contact in contacts %}
+    <div class="faqquestions">
+    <p>  Q:</p><li>{{contact.msg}}</li>
+    </div>
+    
+  
+{% endfor %}
+</ol>
+{% endblock content %}
